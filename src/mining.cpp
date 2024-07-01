@@ -10,6 +10,7 @@
 #include "mining.h"
 #include "utils.h"
 #include "monitor.h"
+#include "timeconst.h"
 #include "drivers/displays/display.h"
 #include "drivers/storage/storage.h"
 
@@ -43,7 +44,7 @@ monitor_data mMonitor;
 bool isMinerSuscribed = false;
 unsigned long mLastTXtoPool = millis();
 
-int saveIntervals[7] = {5 * 60, 15 * 60, 30 * 60, 1 * 360, 3 * 360, 6 * 360, 12 * 360};
+int saveIntervals[7] = {5 * 60, 15 * 60, 30 * 60, 1 * 3600, 3 * 3600, 6 * 3600, 12 * 3600};
 int saveIntervalsSize = sizeof(saveIntervals)/sizeof(saveIntervals[0]);
 int currentIntervalIndex = 0;
 
@@ -397,6 +398,13 @@ void saveStat() {
   nvs_set_u32(stat_handle, "valids", valids);
   nvs_set_u32(stat_handle, "templates", templates);
   nvs_set_u64(stat_handle, "upTime", upTime + (esp_timer_get_time()/1000000));
+}
+
+void resetStat() {
+    Serial.printf("[MONITOR] Resetting NVS stats\n");
+    templates = hashes = Mhashes = totalKHashes = elapsedKHs = upTime = shares = valids = 0;
+    best_diff = 0.0;
+    saveStat();
 }
 
 void runMonitor(void *name)
