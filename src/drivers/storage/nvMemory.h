@@ -7,6 +7,7 @@
 #include "../devices/device.h"
 #include "storage.h"
 
+
 // Handles load and store of user settings, except wifi credentials. Those are managed by the wifimanager.
 class nvMemory
 {

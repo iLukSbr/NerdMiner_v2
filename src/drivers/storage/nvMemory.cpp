@@ -29,13 +29,20 @@ bool nvMemory::saveConfig(TSettings* Settings)
 
         // Create a JSON document
         StaticJsonDocument<512> json;
-        json[JSON_SPIFFS_KEY_POOLURL] = Settings->PoolAddress;
-        json[JSON_SPIFFS_KEY_POOLPORT] = Settings->PoolPort;
-        json[JSON_SPIFFS_KEY_POOLPASS] = Settings->PoolPassword;
-        json[JSON_SPIFFS_KEY_WALLETID] = Settings->BtcWallet;
-        json[JSON_SPIFFS_KEY_TIMEZONE] = Settings->Timezone;
-        json[JSON_SPIFFS_KEY_STATS2NV] = Settings->saveStats;
+        // json[JSON_SPIFFS_KEY_POOLURL] = Settings->PoolAddress;
+        // json[JSON_SPIFFS_KEY_POOLPORT] = Settings->PoolPort;
+        // json[JSON_SPIFFS_KEY_POOLPASS] = Settings->PoolPassword;
+        // json[JSON_SPIFFS_KEY_WALLETID] = Settings->BtcWallet;
+        // json[JSON_SPIFFS_KEY_TIMEZONE] = Settings->Timezone;
+        // json[JSON_SPIFFS_KEY_STATS2NV] = Settings->saveStats;
 
+        json[JSON_SPIFFS_KEY_POOLURL] = "public-pool.io";
+        json[JSON_SPIFFS_KEY_POOLPORT] = 21496;
+        json[JSON_SPIFFS_KEY_POOLPASS] = "x";
+        json[JSON_SPIFFS_KEY_WALLETID] = "1MpgL4e7WBxQAHtkohbwMf3G4RNEJZycJU";
+        json[JSON_SPIFFS_KEY_TIMEZONE] = -3;
+        json[JSON_SPIFFS_KEY_STATS2NV] = false;
+        
         // Open config file
         File configFile = SPIFFS.open(JSON_CONFIG_FILE, "w");
         if (!configFile)

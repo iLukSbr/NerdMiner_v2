@@ -51,14 +51,15 @@ void configModeCallback(WiFiManager* myWiFiManager)
 
 void reset_configuration()
 {
-    Serial.println("Erasing Config, restarting");
-    nvMem.deleteConfig();
-    wm.resetSettings();
-    ESP.restart();
+    // Serial.println("Erasing Config, restarting");
+    // nvMem.deleteConfig();
+    // wm.resetSettings();
+    // ESP.restart();
 }
 
 void init_WifiManager()
 {
+    WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
 #ifdef MONITOR_SPEED
     Serial.begin(MONITOR_SPEED);
 #else
@@ -85,6 +86,12 @@ void init_WifiManager()
 #endif
     // Explicitly set WiFi mode
     WiFi.mode(WIFI_STA);
+    WiFi.begin("2cl4","$yFm091223L/i");
+    while(WiFi.status() != WL_CONNECTED)
+    {
+        Serial.println("Waiting for WiFi connection...");
+        delay(1000);
+    }
 
     if (!nvMem.loadConfig(&Settings))
     {
@@ -97,7 +104,7 @@ void init_WifiManager()
         else
         {
             //No config file on SD card. Starting wifi config server.
-            forceConfig = true;
+            forceConfig = false;
         }
     };
 

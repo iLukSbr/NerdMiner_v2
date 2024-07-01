@@ -1,0 +1,10 @@
+{  
+  "SSID": "",
+  "WifiPW": "",
+  "PoolUrl": "public-pool.io",
+  "PoolPort": 21496,
+  "PoolPassword": "x",
+  "BtcWallet": "",
+  "Timezone": -3,
+  "SaveStats": false
+}

@@ -6,13 +6,13 @@
 // config files
 
 // default settings
-#define DEFAULT_SSID		"NerdMinerAP"
-#define DEFAULT_WIFIPW		"MineYourCoins"
+#define DEFAULT_SSID		""
+#define DEFAULT_WIFIPW		""
 #define DEFAULT_POOLURL		"public-pool.io"
 #define DEFAULT_POOLPASS	"x"
-#define DEFAULT_WALLETID	"yourBtcAddress"
+#define DEFAULT_WALLETID	""
 #define DEFAULT_POOLPORT	21496
-#define DEFAULT_TIMEZONE	2
+#define DEFAULT_TIMEZONE	-3
 #define DEFAULT_SAVESTATS	false
 
 // JSON config files
